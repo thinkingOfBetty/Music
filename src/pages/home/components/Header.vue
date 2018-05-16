@@ -10,10 +10,10 @@
             </div>
         </div>
         <ul class="header-list">
-            <li v-for="(item,index) of switches" :key="index" :class="{ item:hasItem,active: index === currentIndex}"
-             @click="switchItem(index)">
+            <router-link :to='item.link' tag="li" v-for="(item,index) of list" :key="index" :class="{ item:hasItem,active: index === currentIndex}"
+             @click.native="switchItem(index)">
               <span>{{item.name}}</span>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>
@@ -23,22 +23,19 @@ export default {
   name: 'HomeHeader',
   data () {
     return {
-      hasItem: true,
-      currentIndex: 0,
-      switches: [{
-        name: '推荐'
-      }, {
-        name: '歌手'
-      }, {
-        name: '排行'
-      }, {
-        name: '搜索'
-      }]
+      hasItem: true
+    }
+  },
+  props: {
+    list: Array,
+    currentIndex: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
     switchItem (index) {
-      this.currentIndex = index
+      this.$emit('switch', index)
     }
 
   }
