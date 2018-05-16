@@ -11,7 +11,7 @@
         </div>
         <ul class="header-list">
             <router-link :to='item.link' tag="li" v-for="(item,index) of list" :key="index" :class="{ item:hasItem,active: index === currentIndex}"
-             @click.native="switchItem(index)">
+             >
               <span>{{item.name}}</span>
             </router-link>
         </ul>
@@ -23,20 +23,29 @@ export default {
   name: 'HomeHeader',
   data () {
     return {
-      hasItem: true
+      hasItem: true,
+      list: [{
+        'name': '推荐',
+        'link': '/'
+      }, {
+        'name': '歌手',
+        'link': '/singer'
+      }, {
+        'name': '排行',
+        'link': '/ranking'
+      }, {
+        'name': '搜索',
+        'link': '/'
+      }]
     }
   },
   props: {
-    list: Array,
     currentIndex: {
       type: Number,
       default: 0
     }
   },
   methods: {
-    switchItem (index) {
-      this.$emit('switch', index)
-    }
 
   }
 }

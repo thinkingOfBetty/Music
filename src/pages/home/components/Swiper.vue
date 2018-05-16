@@ -36,7 +36,6 @@ export default {
 .wrapper >>> .swiper-pagination-bullet-active
  background #fff
 .wrapper
- .img-wrapper
   overflow hidden
   height 0
   padding-bottom 40%
