@@ -2,8 +2,8 @@
   <div class="container">
     <common-header :currentIndex="currentIndex"></common-header>
      <singer-search :list="hotList"></singer-search>
-     <singer-alphabet :list="characterList"></singer-alphabet>
-     <singer-list :list="singerList"></singer-list>
+     <singer-alphabet :list="characterList" @change="handleCharacterChange"></singer-alphabet>
+     <singer-list :list="singerList" :letter="letter"></singer-list>
   </div>
 </template>
 <script>
@@ -19,7 +19,8 @@ export default {
       currentIndex: 1,
       characterList: [],
       hotList: [],
-      singerList: {}
+      singerList: {},
+      letter: ''
     }
   },
   components: {
@@ -41,6 +42,9 @@ export default {
         this.characterList = data.characterList
         this.hotList = data.hotList
       }
+    },
+    handleCharacterChange (letter) {
+      this.letter = letter
     }
   },
   mounted () {
