@@ -35,7 +35,7 @@ export default {
         'link': '/ranking'
       }, {
         'name': '搜索',
-        'link': '/'
+        'link': '/search'
       }]
     }
   },
