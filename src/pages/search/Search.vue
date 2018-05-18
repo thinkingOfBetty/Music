@@ -1,15 +1,18 @@
 <template>
     <div class="container">
       <common-header :currentIndex="currentIndex"></common-header>
+      <search-header></search-header>
     </div>
 </template>
 <script>
 import CommonHeader from '@/common/Header'
+import SearchHeader from './components/Header'
 // import axios from 'axios'
 export default {
   name: 'Search',
   components: {
-    CommonHeader
+    CommonHeader,
+    SearchHeader
   },
   data () {
     return {
