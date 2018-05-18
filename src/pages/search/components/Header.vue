@@ -10,6 +10,16 @@
                @click="handleHotItemClick">{{item.name}}</li>
           </ul>
       </div>
+      <div class="search-history">
+        <h2>搜索历史<span class="iconfont icon">&#xe67c;</span></h2>
+        <ul class="search-history">
+          <li class="history-item" v-for ="(item,index) of historyList" :key="index" >
+            <span> {{item}}</span>
+            <span class="history-delete"
+             @click="handleDeleteClick(index)">×</span>
+          </li>
+        </ul>
+      </div>
   </div>
 </template>
 <script>
@@ -18,6 +28,7 @@ export default {
   data () {
     return {
       keyword: '',
+      historyList: [],
       list: [{
         id: '01',
         name: '陈奕迅'
@@ -57,6 +68,15 @@ export default {
   methods: {
     handleHotItemClick (e) {
       this.keyword = e.target.innerHTML
+      this.historyList.push(this.keyword)
+    },
+    handleDeleteClick (index) {
+      this.historyList.splice(index, 1)
+    }
+  },
+  watch: {
+    historyList () {
+
     }
   }
 }
@@ -72,6 +92,7 @@ export default {
   padding 0 .2rem
   border-radius .1rem
  .search-list
+  overflow hidden
   width 90%
   padding-top .2rem
   .search-item
@@ -81,4 +102,17 @@ export default {
    padding .2rem
    border 1px solid #ccc
    border-radius .1rem
+ .search-history
+  .icon
+   font-size .44rem
+   float right
+   margin-top -.05rem
+  .search-history
+   padding .4rem
+   .history-item
+    height .68rem
+    line-height .68rem
+    .history-delete
+     float right
+
 </style>

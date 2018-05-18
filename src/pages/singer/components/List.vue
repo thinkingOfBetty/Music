@@ -25,10 +25,6 @@ export default {
     letter () {
       if (this.letter) {
         const ele = this.$refs[this.letter][0]
-        console.log(this.$refs)
-        console.log(this.$refs.wrapper)
-        console.log(this.$refs[this.letter])
-        console.log(this.$refs[this.letter][0])
         this.scroll.scrollToElement(ele)
       }
     }
