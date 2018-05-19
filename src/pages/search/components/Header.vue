@@ -1,6 +1,8 @@
 <template>
   <div class="container">
+    <form action="" @submit="handleSearchHistory">
       <input type="text" class="search-input" placeholder="搜索歌曲、歌手" v-model="keyword">
+    </form>
       <div class="hot-search">
           <h2>热门搜索</h2>
           <ul class="search-list">
@@ -23,61 +25,34 @@
   </div>
 </template>
 <script>
+let arr = JSON.parse(localStorage.getItem('historyList')) || null
 export default {
   name: 'SearchHeader',
   data () {
     return {
       keyword: '',
-      historyList: [],
-      list: [{
-        id: '01',
-        name: '陈奕迅'
-      }, {
-        id: '02',
-        name: '梦一场'
-      }, {
-        id: '03',
-        name: '周杰伦'
-      }, {
-        id: '04',
-        name: 'TaylerSwift'
-      }, {
-        id: '05',
-        name: '张杰'
-      }, {
-        id: '06',
-        name: '张惠妹'
-      }, {
-        id: '07',
-        name: '邓紫棋'
-      }, {
-        id: '08',
-        name: '李荣浩'
-      }, {
-        id: '09',
-        name: '张靓颖'
-      }, {
-        id: '10',
-        name: '凉凉'
-      }, {
-        id: '11',
-        name: '凤凰传奇'
-      }]
+      historyList: arr || []
     }
+  },
+  props: {
+    list: Array
   },
   methods: {
     handleHotItemClick (e) {
       this.keyword = e.target.innerHTML
-      this.historyList.push(this.keyword)
+      // e.target.focus(),为什么这样设置会失效
+      document.querySelector('input').focus()
     },
     handleDeleteClick (index) {
       this.historyList.splice(index, 1)
+      localStorage.setItem('historyList', JSON.stringify(this.historyList))
+    },
+    handleSearchHistory () {
+      this.historyList.push(this.keyword)
+      localStorage.setItem('historyList', JSON.stringify(this.historyList))
     }
   },
   watch: {
-    historyList () {
-
-    }
   }
 }
 </script>

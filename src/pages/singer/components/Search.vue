@@ -18,15 +18,19 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.item
- display flex
- padding .1rem .1rem
- .item-img
-  width 1.4rem
-  height 1.4rem
- .item-name
-  flex 1
-  padding .5rem .2rem
-  font-size .4rem
+.container
+ overflow hidden
+ height 0
+ padding-bottom 117%
+ .item
+  display flex
+  padding .1rem .1rem
+  .item-img
+   width 1.4rem
+   height 1.4rem
+  .item-name
+   flex 1
+   padding .5rem .2rem
+   font-size .4rem
 
 </style>
